@@ -1,0 +1,265 @@
+---
+title: "Supplementary materials for the interview"
+subtitle: "for postdoc position @ IGE"
+execute: 
+    eval: false # by default don't evaluate cell
+    echo: true # echo source code to doc
+# subtitle: "OptionalSubtitle"
+title-slide-attributes: 
+    # data-background-image: background.png # https://www.slidebackground.com/collection/natural-ppt
+    data-background-size: contain
+    data-background-opacity: "0.5"
+author: # https://quarto.org/docs/authoring/front-matter.html
+    - name: "Tsung-Hsi Wu (吳宗羲)"
+      affiliation: "National Central University"
+# institute: "National Central University" # This attaches to the first author only
+date: 2024-09-04
+jupyter: julia-1.10
+# bibliography: main.bib
+format: 
+    revealjs:
+        width: 1600 # increasing width and height results in a smaller relative size of font in display
+        height: 900 # See [Presentation Size](https://quarto.org/docs/presentations/revealjs/advanced.html#presentation-size)
+        theme: [serif,custom.scss] # Please refer https://quarto.org/docs/presentations/revealjs/#themes
+        # logo: Fig_logo_bar_ncu.png
+        preview-links: false # Allow preview links in presenting mode
+        slide-number: true
+        toc: true
+        toc-title: Outline # Title for TOC
+        toc-depth: 3
+        # parallax-background-image: background.png
+        parallax-background-image: https://raw.githubusercontent.com/okatsn/QuartoTemplates/main/tree-slide/background.png
+        parallax-background-size: "1920px 1200px"
+        parallax-background-horizontal: 20
+        parallax-background-vertical: 20
+        footer: <https:&#x2F;&#x2F;github.com&#x2F;okatsn>
+        chalkboard: true
+---
+
+# Introduction
+
+## About me 
+
+I'm Tsung-Hsi, Wu (吳宗羲)
+
+- **Affiliation**: National Central University, Dept. of Earth Sciences (postdoc research fellow).
+- **Expertise**: geophysics; earthquake dynamics; stochastic process
+- **Hobby**: programming with julia, rock climbing
+- **Contact me**: [okatsn@gmail.com](); [https://github.com/okatsn](https://github.com/okatsn)
+
+<!-- ![](https://raw.githubusercontent.com/okatsn/COSCUP_2023_Slides/master/about_twaiswcf/AboutMe_causual.jpg){.absolute bottom=20 right=0 width=400} -->
+
+<!-- TODO: Revise required; Use local images instead. -->
+
+## Main Research Topics {.scrollable}
+
+My research in Earth Sciences focuses on innovative methodologies and analytical techniques to enhance the understanding of <span class="fragment highlight-forestgreen" fragment-index=1>soil water content estimation</span>, <span class="fragment highlight-indianred" fragment-index=2>stochastic earthquake dynamics</span>, and <span class="fragment highlight-steelblue" fragment-index=3>earthquake precursor detection</span>. Below are the main areas of my research:
+
+::: {.image-container}
+![](Fig_research_roadmap.png){width="1920px" fig-align="center"}
+:::
+
+
+# My Research Topics
+
+## Stochastic Dynamics and Informational Analysis of Earthquake Rupture Processes
+
+- Developed and applied stochastic models using the <span class="fragment highlight-current-bold" fragment-index=1>Langevin equation</span> ^[Essentially a kind of stochastic differential equation (SDE) that describes the evolution of a system under both deterministic and random forces.] and <span class="fragment highlight-current-bold" fragment-index=2>Fokker-Planck equation</span> ^[A kind of partial differential equation (PDE) governing the time evolution of the probability density function of a stochastic variable, that shares a similar diffusion-like form with the Shallow-Ice Approximation (SIA) equation, but describes the evolution of probability densities of rupture momentum rather than ice thickness.] to analyze earthquake rupture processes, providing insights into earthquake dynamics and physics-based explanation for empirical scaling laws.
+- Utilized the informational theory ^[Fisher-Shannon analysis] approaches to distinguish between different frictional regimes based on both synthetic and experimental data, providing insights into the underlying mechanisms of earthquake process. 
+
+::: aside
+
+:::
+
+
+## Stochastic Dynamics and Informational Analysis of Earthquake Rupture Processes {.unlisted .scrollable}
+- This research, central to [my doctoral thesis](https://etd.lib.nycu.edu.tw/cgi-bin/gs32/ncugsweb.cgi/ccd=XFHnvt/record?r1=1&h1=2), resulted in [one published paper](https://aip.scitation.org/doi/full/10.1063/1.5092552), [one under review](https://www.researchsquare.com/article/rs-3301435/v1), and another nearly ready for submission.
+
+
+![](FinalDefense_p10.png){width="1600px" fig-align="center"}
+![](FinalDefense_p11.png){width="1600px" fig-align="center"}
+
+
+### The equivalent Fokker-Planck equation
+
+::::{.columns}::::
+:::{.column width='40%'}
+##### Langevin equation
+
+- Straightforward physics reasoning
+- Rupture processes realized as "sample paths"
+
+##### Fokker-Planck equation
+
+- Describe the same process from the perspective of "probability density"
+
+$$
+        \frac{\partial P(v,t)}{\partial t} = - \frac{\partial}{\partial v} \Bigg( \left(  - F_C \frac{v(t)}{|v(t)|} + F_\text{ext}  \right) P(v,t) \Bigg) \\
+        + D\frac{\partial^2}{\partial v^2}P(v,t)
+$$
+:::
+:::{.column width='30%'}
+![](LE_FPE_animation.gif)
+:::
+:::{.column width='30%'}
+![](FPE_pdf_evolution.png)
+:::
+::::
+
+
+## Machine Learning for Soil Water Content Estimation
+
+- Utilized <span class="fragment highlight-steelblue" fragment-index=1>Classification and Regression Tree (CART)</span> algorithm to estimate soil water content (SWC) using meteorological inputs for agricultural purposes in Taiwan.
+- Employed advanced feature selection and time-series cross-validation techniques to analyze the responsiveness of SWC at different soil depths to various meteorological parameters, providing a detailed analysis of <span class="fragment highlight-steelblue" fragment-index=1>depth-dependent time delays and saturation effects</span>.
+- Contributed to the understanding of seasonal hydrodynamic variations in response to meteorological changes, offering critical insights that can enhance agricultural water management practices.
+
+## Machine Learning for Soil Water Content Estimation {.unlisted}
+
+- Supported by National Science and Technology Council (Taiwan), this project produced one [published paper](https://www.sciencedirect.com/science/article/pii/S037837742400204X), one [Julia package](https://okatsn.github.io/TWAISWCF/dev/){preview-link="true"} and a technical report over two years.
+
+<iframe width="1600" height="500" src="https://www.sciencedirect.com/science/article/pii/S037837742400204X" title="AGWAT-paper"></iframe>
+
+## Advanced Techniques in Geo-Electromagnetic Earthquake Precursor Detection
+
+::: {.scroll-container style="overflow-y: scroll; height: 550px;"}
+- Integrated <span class="fragment highlight-indianred" fragment-index=1>GEMSTIP and MagTIP</span> ^[GeoElectric Monitoring System (GEMS) with extended adaptability to geomagnetic data, based on Time of Increased Probability (TIP) concept. For more details please refer to ["Testing the correlations between anomalies of statistical indexes of the geoelectric system and earthquakes" (H.-J Chen & C.-C Chen, 2016)](https://link.springer.com/article/10.1007/s11069-016-2460-4).] algorithms for analyzing <span class="fragment highlight-steelblue" fragment-index=2>earthquake-related geo-electromagnetic anomalies</span>.
+- Conducted a comprehensive analysis of 12 years of geo-electromagnetic data, identifying key statistical indicators and their relationships to earthquake events.
+
+
+:::
+
+
+::: aside
+
+:::
+
+## Advanced Techniques in Geo-Electromagnetic Earthquake Precursor Detection {.unlisted}
+
+(On going)
+
+- Applied <span class="fragment highlight-bold" fragment-index=1>information theory metrics</span> in earthquake precursor detection and developed experimental forecasting models.
+- <span class="fragment highlight-bold" fragment-index=1>Combined TIP forecasts with machine learning techniques</span> to improve earthquake prediction accuracy and reliability.
+
+## Advanced Techniques in Geo-Electromagnetic Earthquake Precursor Detection {.scrollable .unlisted}
+
+### The concept of Time of Increased Probability
+
+![](fig_TIP_concept.png)
+![](fig_EQKTIP.png)
+
+::::{.columns}::::
+:::{.column width='50%'}
+![](fig_TIP_example_3D.png)
+
+:::
+:::{.column width='50%'}
+![](fig_TIP_example_2D.png)
+:::
+::::
+
+## 2024-04-03 Hualien earthquakes {.unlisted auto-animate=true}
+
+::::{.columns}::::
+:::{.column width='60%'}
+- Training phase: 2020-01-01 to 2023-11-01
+- Forecasting phase: 2024-01-01 to 2024-05-05
+- Filter: ULF-A (0.001-0.003Hz)
+- Joint station: geo-electric and geo-magnetic
+
+![](event403_cluster1.png){width="700px"}
+:::
+
+:::{.column width='40%'}
+![](event403_datarange.png){fig-align="right"}
+
+![](event403_probmap.gif){width="500px" fig-align="center"}
+
+:::
+::::
+
+
+
+
+
+
+# Recent Conference Presentations 
+
+## 2023 Conference for Open Source Coders, Users & Promoters (COSCUP 2023) {.scrollable}
+
+(Oral) Julia for Data-Driven Soil Water Content Estimation in Agriculture
+
+- Audience: Predominantly professionals in software and data engineering
+- Description: Presented innovative methodologies utilizing Julia for estimating soil water content, demonstrating data preparation, model training, and prediction accuracy improvements. Highlighted the application of machine learning techniques, including the Classification and Regression Tree (CART) algorithm, and the integration of atmospheric data to enhance agricultural practices and water resource management.
+- For detailed information, please refer to [the page of this talk](https://pretalx.coscup.org/coscup-2023/talk/WMYFZE/) and also the [Slides](https://okatsn.github.io/COSCUP_2023_Slides/about_twaiswcf/){preview-link="true"}.
+
+<iframe width="1600" height="600" src="https://okatsn.github.io/COSCUP_2023_Slides/about_twaiswcf/" title=""></iframe>
+
+
+## 2023 Conference for Open Source Coders, Users & Promoters (COSCUP 2023) {.scrollable .unlisted}
+
+(Oral) SmallDatasetMaker.jl: A Julia package for making and maintaining small datasets
+
+- Role: Developer
+- Description: Created tools to facilitate the creation, update, and management of datasets as Julia packages. Focused on data compression, version control, and ease of integration into Julia projects.
+- For detailed information, please refer to [the page of this talk](https://pretalx.coscup.org/coscup-2023/talk/ED3VPX/) and also the [Slides](https://okatsn.github.io/COSCUP_2023_Slides/introduce_smalldatasetmaker/){preview-link="true"}.
+
+<iframe width="1600" height="600" src="https://okatsn.github.io/COSCUP_2023_Slides/introduce_smalldatasetmaker/" title=""></iframe>
+
+
+## Asia-Pacific Signal and Information Processing Association Annual Summit and Conference (2023 APSIPA ASC) {.scrollable}
+
+(Oral) Random forest of Classification and Regression Tree (CART) in the estimation of SWC based on meteorological inputs and hydrodynamics behind
+
+- For more detailed information, please refer to the [Slides](https://okatsn.github.io/APSIPA_2023_Slide/APSIPA_2023_presentation/){preview-link="true"}.
+
+<iframe width="1600" height="600" src="https://okatsn.github.io/APSIPA_2023_Slide/APSIPA_2023_presentation/" title=""></iframe>
+
+
+## American Geophysical Union Fall Meeting (2023 AGU) {.scrollable}
+
+(Poster) Fisher-Shannon Analysis on Experimental Seismic Slip Rate History and Its Implications to Earthquake Rupture Dynamics
+
+
+::: {.scroll-container style="overflow-y: scroll; height: 750px;"}
+![](poster-portrait.png){width="1600" fig-align="center"}
+:::
+
+
+# Experience
+
+## PU TAI Senior High School
+
+> Nantou, Taiwan (August 2014 - August 2015)
+
+- Taught Physics and Chemistry, including developing and delivering lesson plans.
+- Mentored and advised students on academic and career paths; enhancing student engagement.
+
+
+## Legal-Tech Hackathon
+
+> Taipei, Taiwan (2023 August - September)
+> 
+> [Legal-Tech Hackathon 2023 webpage (in Chinese)](https://hackathon.lawsnote.com/index.php/legaltechhackathon2023/); [Slides (in Chinese)](https://drive.google.com/file/d/1afBGp78z5pLP9KbMJeklbiZc4GPg9whh/view).
+
+::::{.columns}::::
+:::{.column width='60%'}
+- Cleaned data and extracted information from over 200,000 legal documents using Python.
+
+:::
+:::{.column width='40%'}
+- Our team was a finalist.
+:::
+::::
+
+<iframe width="1920" height="480" src="https://hackathon.lawsnote.com/index.php/legaltechhackathon2023/" title=""></iframe>
+
+## MATLAB Deep Learning Competition
+
+> Taipei, Taiwan (2018 November - 2019 December)
+
+[Event webpage 1 (in Chinese)](https://www.terasoft.com.tw/matlabdeeplearning/2018/). [Event webpage 2 (in Chinese)](https://www.terasoft.com.tw/matlabdeeplearning/2018/data.asp).
+
+- Preprocessed data and augmented the dataset using various techniques to synthesize merchandise photos for model training.
+- Awarded the Outstanding Performance Award as part of the team [(Link to the award certificate)](https://drive.google.com/file/d/1RHr8YC7ShA5siO8VA9a-0uzez0qmtVf0/view?usp=sharing).
+
+![](https://www.terasoft.com.tw/matlabdeeplearning/2018/images/deep_learning.jpg)

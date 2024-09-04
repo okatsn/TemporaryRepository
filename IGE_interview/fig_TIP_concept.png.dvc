@@ -1,0 +1,12 @@
+md5: e1712fe8f6df6394ec450b0bc8c1ffa3
+frozen: true
+deps:
+- path: cwa-geamtip/general/fig_TIP_concept.png
+  repo:
+    url: https://github.com/okatsn/ok-assets-registry.git
+    rev_lock: 7c4811b38b84f7ee3c9d381a3ef80c07e2f459e3
+outs:
+- md5: 285a1037855c7541c6afc1c38897584e
+  size: 86844
+  hash: md5
+  path: fig_TIP_concept.png

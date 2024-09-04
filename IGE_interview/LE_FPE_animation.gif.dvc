@@ -1,0 +1,12 @@
+md5: b1f72607613a6fbf526336ac2070a080
+frozen: true
+deps:
+- path: stochastic-rupture/LE_FPE_animation.gif
+  repo:
+    url: https://github.com/okatsn/ok-assets-registry.git
+    rev_lock: df9ebb3fa631722cbba155759c52c03afe7de2a7
+outs:
+- md5: b2112497ec5205d4058bd061753cb8e0
+  size: 7934819
+  hash: md5
+  path: LE_FPE_animation.gif
