@@ -1,0 +1,13 @@
+outs:
+- md5: fffe29686ecdf0aa5a25e8324720641e.dir
+  size: 1518352
+  nfiles: 4
+  hash: md5
+  path: invited-talks
+md5: a2faee816f07768ef64b0f211a24e346
+frozen: true
+deps:
+- path: invited-talks
+  repo:
+    url: https://github.com/okatsn/ok-assets-registry.git
+    rev_lock: 70d868fd949d319acfe0a352cd3ea634628f13e0

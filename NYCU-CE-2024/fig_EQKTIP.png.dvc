@@ -1,0 +1,12 @@
+md5: 97ef9a9b2360ca828692c84daa83dc79
+frozen: true
+deps:
+- path: cwa-geamtip/general/fig_EQKTIP.png
+  repo:
+    url: https://github.com/okatsn/ok-assets-registry.git
+    rev_lock: 7c4811b38b84f7ee3c9d381a3ef80c07e2f459e3
+outs:
+- md5: 238e80645ecb5cbcdf1116d507b75321
+  size: 430268
+  hash: md5
+  path: fig_EQKTIP.png

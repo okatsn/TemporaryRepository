@@ -1,0 +1,12 @@
+md5: 72c884a74fefbe7e2a9066f770497bed
+frozen: true
+deps:
+- path: invited-talks/Fig_research_roadmap.png
+  repo:
+    url: https://github.com/okatsn/ok-assets-registry.git
+    rev_lock: 7c4811b38b84f7ee3c9d381a3ef80c07e2f459e3
+outs:
+- md5: c9e567810bb8c3effb3d18be41892110
+  size: 170606
+  hash: md5
+  path: Fig_research_roadmap.png

@@ -1,0 +1,12 @@
+md5: 730794f5ddd509d76f2488474e8bb71a
+frozen: true
+deps:
+- path: reports/report-2024-08/event403_datarange.png
+  repo:
+    url: https://github.com/okatsn/GeoElectricAndMagneticTIP.git
+    rev_lock: 852ab5d53b1f6a4ae8e90d1836deb4e1a0197e77
+outs:
+- md5: e02b775caf7bf4efc7f7ac45b3542849
+  size: 54928
+  hash: md5
+  path: event403_datarange.png

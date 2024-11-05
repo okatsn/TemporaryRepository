@@ -1,0 +1,12 @@
+md5: ccda678903a72558a4dbd73ce30996e6
+frozen: true
+deps:
+- path: reports/report-2024-08/event403_cluster1.png
+  repo:
+    url: https://github.com/okatsn/GeoElectricAndMagneticTIP.git
+    rev_lock: 852ab5d53b1f6a4ae8e90d1836deb4e1a0197e77
+outs:
+- md5: cbc113abb8ee1642d725f8ac4ad5658a
+  size: 56653
+  hash: md5
+  path: event403_cluster1.png

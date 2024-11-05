@@ -1,0 +1,793 @@
+---
+title: "台灣地電磁場觀測系統與地震電磁前兆研究的進展與挑戰"
+subtitle: "Progress and Challenges in the Observation System of Taiwan's Geoelectromagnetic Field and Research on Seismic Electromagnetic Precursors"
+execute: 
+    eval: false # by default don't evaluate cell
+    echo: true # echo source code to doc
+title-slide-attributes: 
+    # data-background-image: background.png # https://www.slidebackground.com/collection/natural-ppt
+    data-background-size: contain
+    data-background-opacity: "0.5"
+author: # https://quarto.org/docs/authoring/front-matter.html
+    - name: "Tsung-Hsi Wu (吳宗羲)"
+      affiliation: "National Central University"
+# institute: "National Central University" # This attaches to the first author only
+date: 2024-11-06
+jupyter: julia-1.10
+# bibliography: main.bib
+format: 
+    revealjs:
+        width: 1600 # increasing width and height results in a smaller relative size of font in display
+        height: 900 # See [Presentation Size](https://quarto.org/docs/presentations/revealjs/advanced.html#presentation-size)
+        theme: [serif,custom.scss] # Please refer https://quarto.org/docs/presentations/revealjs/#themes
+        # logo: Fig_logo_bar_ncu.png
+        # html-math-method: mathjax
+        preview-links: false # Allow preview links in presenting mode
+        slide-number: true
+        toc: true
+        toc-title: Outline # Title for TOC
+        toc-depth: 2
+        # parallax-background-image: background.png
+        parallax-background-image: https://raw.githubusercontent.com/okatsn/QuartoTemplates/main/tree-slide/background.png
+        parallax-background-size: "1920px 1200px"
+        parallax-background-horizontal: 20
+        parallax-background-vertical: 20
+        # footer: <https:&#x2F;&#x2F;github.com&#x2F;okatsn>
+        chalkboard: true
+---
+
+# About me 
+
+I'm Tsung-Hsi, Wu (吳宗羲)
+
+- **Affiliation**: National Central University, Dept. of Earth Sciences (postdoc research fellow).
+- **Expertise**: geophysics; earthquake dynamics; stochastic process
+- **Hobby**: programming with julia, rock climbing
+- **Contact me**: [okatsn@gmail.com](); [https://github.com/okatsn](https://github.com/okatsn)
+
+![](https://raw.githubusercontent.com/okatsn/COSCUP_2023_Slides/master/about_twaiswcf/AboutMe_causual.jpg){.absolute bottom=360 right=0 width=300}
+
+<!-- TODO: Revise required; Use local images instead. -->
+
+## Experience {.scrollable .unlisted}
+
+### National Chiao Tung University^[It is currently [National Yang Ming Chiao Tung University (NYCU)](https://en.nycu.edu.tw/)]
+
+Hsinchu, Taiwan (September 2006 - June 2012)
+
+- [Department of Electrophysics](https://ep.nycu.edu.tw/en/)
+
+### PU TAI Senior High School
+
+Nantou, Taiwan (August 2014 - August 2015)
+
+- Taught Physics and Chemistry
+<!-- - , including developing and delivering lesson plans. -->
+<!-- - Mentored and advised students on academic and career paths; enhancing student engagement. -->
+
+### National Central University
+
+Taoyuan, Taiwan
+
+- Master Program in Geophysics (May 2016 - June 2018)
+- Doctoral Program in Geophysics (September 2018 - July 2024)
+
+
+## Main Research Topics {.scrollable .unlisted}
+
+My research in Earth Sciences focuses on innovative methodologies and analytical techniques to enhance the understanding of <span class="fragment highlight-forestgreen" fragment-index=1>soil water content estimation</span>, <span class="fragment highlight-indianred" fragment-index=2>stochastic earthquake dynamics</span>, and <span class="fragment highlight-steelblue" fragment-index=3>earthquake precursor detection</span>. Below are the main areas of my research:
+
+::: {.image-container}
+![](Fig_research_roadmap.png){width="1920px" fig-align="center"}
+:::
+
+
+# My Research Topics {visibility="hidden"} 
+<!-- TODO: These hidden slides are not shown in NYCU's talk, but might be presented in NCCU's talk. -->
+
+## Stochastic Dynamics and Informational Analysis of Earthquake Rupture Processes 
+
+<!-- TODO: Please emphasize on the Informational Analysis part because it will be a key later -->
+<!-- {visibility="hidden"} -->
+
+- Developed and applied stochastic models using the <span class="fragment highlight-current-bold" fragment-index=1>Langevin equation</span> ^[Essentially a kind of stochastic differential equation (SDE) that describes the evolution of a system under both deterministic and random forces.] and <span class="fragment highlight-current-bold" fragment-index=1>Fokker-Planck equation</span> ^[A kind of partial differential equation (PDE) governing the time evolution of the probability density function of a stochastic variable, saying rupture momentum in our case.] to analyze earthquake rupture processes, providing insights into earthquake dynamics and physics-based explanation for empirical scaling laws.
+- Utilized the <span class="fragment highlight-bold" fragment-index=2>informational theory</span> ^[Fisher-Shannon analysis] approaches to distinguish between different frictional regimes based on both synthetic and experimental data, providing insights into the underlying mechanisms of earthquake process. 
+
+::: aside
+
+:::
+
+
+## Stochastic Dynamics and Informational Analysis of Earthquake Rupture Processes {.unlisted .scrollable}
+
+![](FinalDefense_p10.png){width="1600px" fig-align="center"}
+![](FinalDefense_p11.png){width="1600px" fig-align="center"}
+
+
+### The equivalent Fokker-Planck equation
+
+::::{.columns}::::
+:::{.column width='40%'}
+##### Langevin equation
+
+- Straightforward physics reasoning
+- Rupture processes realized as "sample paths"
+
+##### Fokker-Planck equation
+
+- Describe the same process from the perspective of "probability density"
+
+$$
+        \frac{\partial P(v,t)}{\partial t} = - \frac{\partial}{\partial v} \Bigg( \left(  - F_C \frac{v(t)}{|v(t)|} + F_\text{ext}  \right) P(v,t) \Bigg) \\
+        + D\frac{\partial^2}{\partial v^2}P(v,t)
+$$
+:::
+:::{.column width='30%'}
+![](LE_FPE_animation.gif)
+:::
+:::{.column width='30%'}
+![](FPE_pdf_evolution.png)
+:::
+::::
+
+## Stochastic Dynamics and Informational Analysis of Earthquake Rupture Processes {.unlisted .scrollable}
+### Informational analysis on rock fracture 
+
+::::{.columns}::::
+:::{.column width='40%'}
+
+[Fisher Information Measure]{.bltag}
+$$
+    FIM=\int\limits_{-\infty}^{+\infty}(\frac{\partial}{\partial x}f(x))^2\frac{dx}{f(x)}
+$$
+
+[Shannon Entropy]{.bltag}
+$$
+SE=-\int\limits_{-\infty}^{+\infty}f(x)\log f(x) dx
+$$
+
+[Shannon Entropy Power]{.bltag}
+$$
+SEP=\frac{1}{2\pi e}e^{2H_X}
+$$
+:::
+:::{.column width='60%'}
+![](./stochastic-rupture/FisherShannon/LESim_FS_Wu2019.jpg)
+:::
+::::
+
+::: {.notes}
+- 從右下角的 Langevin Equation 講起
+
+左上角的 
+
+- FIM：根據觀測的分布，度量「估計」的訊息
+- SEP：根據觀測的分布，度量資訊的含量。資訊量越大代表越隨機。
+
+接下來的矽酸鹽投影片很快講過就好
+
+最後從FIM－SEP接到地震預測：使用資訊理論量化地電磁場的不確定、隨機性。進而用於地震前兆研究、預報。
+:::
+
+## Stochastic Dynamics and Informational Analysis of Earthquake Rupture Processes {.unlisted .scrollable}
+### Informational analysis on rock fracture 
+![](./stochastic-rupture/FisherShannon/silicate_FS_with_Hung2019.jpg)
+![](./stochastic-rupture/FisherShannon/silicate_FS_2D_with_Wu2019.jpg)
+
+## Stochastic Dynamics and Informational Analysis of Earthquake Rupture Processes {.unlisted}
+### Informational analysis on rock fracture 
+![](./stochastic-rupture/FisherShannon/carbonate_FS_with_Spagnuolo2015.jpg)
+
+## Machine Learning for Soil Water Content Estimation {visibility="hidden"}
+
+- Utilized <span class="fragment highlight-steelblue" fragment-index=1>Classification and Regression Tree (CART)</span> algorithm to estimate soil water content (SWC) using meteorological inputs for agricultural purposes in Taiwan.
+- Employed advanced feature selection and time-series cross-validation techniques to analyze the responsiveness of SWC at different soil depths to various meteorological parameters, providing a detailed analysis of <span class="fragment highlight-steelblue" fragment-index=1>depth-dependent time delays and saturation effects</span>.
+- Contributed to the understanding of seasonal hydrodynamic variations in response to meteorological changes, offering critical insights that can enhance agricultural water management practices.
+
+## Machine Learning for Soil Water Content Estimation {.unlisted visibility="hidden"}
+
+- Supported by National Science and Technology Council (Taiwan), this project produced one [published paper](https://www.sciencedirect.com/science/article/pii/S037837742400204X), one [Julia package](https://okatsn.github.io/TWAISWCF/dev/){preview-link="true"} and a technical report over two years.
+
+<iframe width="1600" height="500" src="https://www.sciencedirect.com/science/article/pii/S037837742400204X" title="AGWAT-paper"></iframe>
+
+
+# Introduction to Techniques in Geo-Electromagnetic Earthquake Precursor Detection
+<!-- FIXME: This title might require revision. -->
+
+## {.unlisted}
+
+::::{.columns}::::
+:::{.column width='45%'}
+### Tazima et al., 1976 ^[DOI:10.5636/jgg.28.69]
+<!-- TODO: "ZIZ" -->
+![](cwa-geamtip/LiteratureReview/Tazima1976.png){width="480px" fig-align="center"}
+
+:::
+:::{.column width='55%'}
+### Ikeya et al., 2000 ^[DOI:10.18814/epiiugs/2000/v23i4/004]
+![](cwa-geamtip/LiteratureReview/Ikeya2000.png){width="630px" fig-align="center"}
+
+:::
+
+::::
+
+::::{.columns}::::
+:::{.column width='45%'}
+> Tectonic process related sudden anomalous change in the declination ($D$).
+:::
+:::{.column width='55%'}
+> Variation of stress and strain for granite using the 500-ton compression machine together with the observation of electromagnetic (EM) pulses and acoustic emissions.
+:::
+
+::::
+
+
+::: {.notes}
+Tazima1976: 縱軸是磁偏角(D, declination) 變化。完整文字：Sudden anomalous change in the declination ($D$) at the Obihiro 1st order station, in spite of that $D$ at neighboring stations kept decreasing
+
+Ikeya2000: 從頂至底：最上面是動物活動，接著是聲波、EM。
+:::
+
+## {.unlisted}
+### Yen 2004
+
+
+
+::::{.columns}::::
+:::{.column width='35%'}
+![](cwa-geamtip/LiteratureReview/Yen2004.jpg){width="1000px" fig-align="center"}
+:::
+:::{.column width='29%'}
+![](cwa-geamtip/LiteratureReview/station_map_Yen2004.jpg)
+:::
+:::{.column width='35%'}
+- Geomagnetic anomalies observed around the time of the <span class="fragment highlight-bold" fragment-index=1>1999 Chi-Chi</span> earthquake (M7.3) and a subsequent <span class="fragment highlight-bold" fragment-index=1>Chia-Yi</span> earthquake (M6.2) in Taiwan.
+- LY-LP: Difference in geomagnetic total intensity between Liyutan and reference station.
+:::
+::::
+
+# TIP based Geo-Electromagnetic Earthquake Precursor Detection
+
+## Time of Increased Probability {.scrollable}
+
+### Algorithm M8 ^[Keilis-Borok and Kossobokov, 1990; DOI: 10.1016/0031-9201(90)90096-G]
+
+::::{.columns}::::
+
+Main Parameters
+
+:::{.column width='50%'}
+- N (Earthquake Rate)
+- L (Deviations in Seismic Activity)
+:::
+:::{.column width='50%'}
+- Z (Spatial Concentration)
+- B (Aftershock Activity)
+
+:::
+
+"extremely large values" ➡️ <span class="fragment highlight-blue" fragment-index=1>Time of Increased Probability (TIP)</span>
+
+::::
+
+
+### Application of "M8" on earthquake forecasting ^[Novelo-Casanova et al., 1995; DOI:10.1016/0031-9201(94)02963-C]
+
+- Three regions in Mexican subduction zone targeting events $M_s \geq 7.5$
+- 3 out of 5 large earthquakes during this period matched the TIPs forecast by the M8 algorithm
+
+::::{.columns}::::
+:::{.column width='50%'}
+![](./cwa-geamtip/LiteratureReview/Fig_1_Novelo-Casanova1992.png){width="600px" fig-align="right"}
+
+:::
+:::{.column width='50%'}
+![](./cwa-geamtip/LiteratureReview/Fig_3_Novelo-Casanova1992.png){width="800px" fig-align="left"}
+
+:::
+::::
+
+
+# GeoElectric Monitoring System (GEMS) and GEMS' TIP
+
+<!-- ^[GeoElectric Monitoring System (GEMS) with extended adaptability to geomagnetic data, based on Time of Increased Probability (TIP) concept. For more details please refer to ["Testing the correlations between anomalies of statistical indexes of the geoelectric system and earthquakes" (H.-J Chen & C.-C Chen, 2016)](https://link.springer.com/article/10.1007/s11069-016-2460-4).] -->
+
+## GeoElectric Monitoring System (GEMS) ^[台灣地電觀測網] ^[GEMS is currently part of [TGNS](https://gdms.cwa.gov.tw/network_tgns.php)]
+
+
+
+
+::: {layout-ncol="3"}
+![](https://gdms.cwa.gov.tw/img/network/tgns.jpg){width="500px"}
+
+![](./cwa-geamtip/general/stationMap_2024.png){width="800px" fig-align="center"}
+
+![](./cwa-geamtip/general/stationTable_2024.png){width="800px" fig-align="center"}
+
+:::
+
+
+
+
+
+## GEMSTIP ^[Chen, 2018 地電訊號異常與地震的關聯性研究; http://ir.lib.ncu.edu.tw:88/thesis/view_etd.asp?URN=102682002]
+<!-- (陳, 陳及徐 2014; 2015; 陳, 陳及孫 2016; 2017)  -->
+<!-- TODO: 加宏嘉論文圖 -->
+<!-- ### Zechar 2008  -->
+
+::::{.columns}::::
+:::{.column width='37%'}
+
+> GEMS’ Times of Increased Probability
+
+Main parameters:
+
+[Skewness]{.bltag}
+$$
+S = \frac{\frac{1}{N} \sum_{i=1}^N (x_i -\mu)^3}{(\sqrt{\frac{1}{N}\sum_{i=1}^N (x_i -\mu)^2})^3}
+$$
+
+[Kurtosis]{.bltag}
+$$
+K = \frac{\frac{1}{N} \sum_{i=1}^N (x_i -\mu)^4}{(\sqrt{\frac{1}{N}\sum_{i=1}^N (x_i -\mu)^2})^2}
+$$
+
+
+:::
+:::{.column width='63%'}
+
+::::{.columns}::::
+:::{.column width='40%'}
+[Matching target events]{.ltag fragment-index=1 .fragment}
+![](cwa-geamtip/LiteratureReview/Chen2018_Fig10_SchematicTIPa.png){width="800px" fig-align="center"}
+
+
+
+[Select best model using Molchan diagram]{.ltag fragment-index=2 .fragment}
+![](cwa-geamtip/LiteratureReview/Chen2018_Fig11_MolchanDiagram.png){width="800px" fig-align="center"}
+
+:::
+:::{.column width='57%'}
+[Give TIP forecasting with trained model parameters]{.ltag fragment-index=3 .fragment}
+![](cwa-geamtip/LiteratureReview/Chen2018_Fig10_SchematicTIP1Db.png){width="800px" fig-align="center"}
+
+::::{.columns}::::
+:::{.column width='60%'}
+![](cwa-geamtip/LiteratureReview/Chen2018_Fig12_SchematicTIP3D.png){width="300px" fig-align="right"}
+
+:::
+:::{.column width='35%'}
+[Joint-station TIP forecasting in temporal-spatial coordinate]{.ltag fragment-index=4 .fragment}
+:::
+::::
+
+:::
+::::
+
+:::
+::::
+
+
+
+
+
+## {auto-animate=true} 
+<!-- FIG_ZH: the figure is in ZH -->
+
+![](./cwa-geamtip/general/DevelopmentHistory2024.png)
+
+<!-- MagTIP (陳, 吳及陳 2021; 陳及吳 2019; 2020)
+
+information analysis: Telesca 2014 (see CANVA.pptx) -->
+
+
+## On going works {auto-animate=true}
+
+
+- Applied <span class="fragment highlight-bold" fragment-index=1>information theory metrics</span> in earthquake precursor detection and developed experimental forecasting models.
+- <span class="fragment highlight-bold" fragment-index=1>Combined TIP forecasts with machine learning techniques</span> to improve earthquake prediction accuracy and reliability.
+
+![](./cwa-geamtip/general/DevelopmentHistory2024.png){fig-align="right" width="700px"}
+
+
+# Joint-station TIP forecasting method
+
+
+## The concept of Time of Increased Probability {.scrollable}
+
+
+### Model parameters
+
+
+| $M_c$ | $R_c$  | $A_{thr}$ | $N_{thr}$ | $P_{thr}$ | $T_{thr}$               | $T_{obs}$ | $T_{lead}$ | $T_{pred}$ |
+| :---- | :----- | :-------- | :-------- | :-------- | :---------------------- | :-------- | :--------- | :--------- |
+| 5     | 20-100 | 1-10      | 1-2       | 0.1-0.5   | $P_{thr}\times T_{obs}$ | 5-100     | 0-100      | 1          |
+|       | km     |           |           |           | days                    | days      | days       |            |
+
+
+
+### Determination of alarmed area
+
+![](fig_TIP_concept.png)
+
+
+![](fig_EQKTIP.png)
+
+
+## The concept of Time of Increased Probability {.unlisted}
+
+::::{.columns}::::
+:::{.column width='45%'}
+![](fig_TIP_example_3D.png)
+
+:::
+:::{.column width='55%'}
+![](fig_TIP_example_2D.png)
+
+> number of permutations: $NP_{mod} = 500$                     
+:::
+::::
+
+<!-- ## Multi-variate TIP forecasting -->
+<!-- TODO: Optional: Add page 12 "資料處理與變量分配示意圖
+" of CANVA -->
+
+## Frequency bands of interest
+
+::::{.columns}::::
+:::{.column width='50%'}
+![](./cwa-geamtip/general/frequency_range_linear.png){width="800px" fig-align="center"}
+![](./cwa-geamtip/general/frequency_range_log.png){width="800px" fig-align="center"}
+
+:::
+:::{.column width='50%'}
+| Abbr. | Band-pass Frequency Range | Period Range |
+| :---- | :------------------------ | :----------- |
+| ULF_A | 0.00100 - 0.0030 Hz       | 1000-333 s   |
+| ULF_B | 0.00100 - 0.0100 Hz       | 1000-100 s   |
+| BP_35 | 0.00032 - 0.0178 Hz       | 3162-56 s    |
+| BP_40 | 0.00010 - 0.0178 Hz       | 10000-56 s   |
+
+:::
+::::
+
+## Matching between alarmed area and target earthquakes
+
+![](./cwa-geamtip/general/matchingDiagram_TIP3D_explained.png)
+
+
+
+## Matching between alarmed area and target earthquakes {.unlisted}
+
+![](./cwa-geamtip/report-2022/matchingTIP_prob_20220607_Hualien_3yrTrain.png){fig-align="center"}
+
+
+## Matching between alarmed area and target earthquakes {.unlisted}
+
+![](./cwa-geamtip/report-2022/matchingTIP_prob_20220918_Taitung_3yrTrain.png){fig-align="center"}
+
+
+
+## Fitting degree between TIP and target event 
+
+::::{.columns}::::
+:::{.column width='40%'}
+### Molchan Diagram
+
+![](./cwa-geamtip/general/MolchanDiagram_LY_example.png)
+
+:::
+:::{.column width='60%'}
+### Fitting Degree
+
+[Alarmed Rate]{.bltag}
+$$
+\tau(\textbf{g}) = \frac{\sum_t (TIP(t|\textbf{g}) \equiv 1)}{\sum_t (TIP(t|\textbf{g}) \geq 0)}
+$$
+
+[Missed Rate]{.bltag}
+$$
+\nu(\textbf{g}) = \frac{\sum_t(TIP(t|\textbf{g}) \equiv 0 \wedge EQK(t|\textbf{g}) \equiv 1)}{\sum_t(TIP(t|\textbf{g}) \geq 0 \wedge EQK(t|\textbf{g}) \equiv 1)}
+$$
+
+[Fitting Degree]{.bltag}
+$$
+D(\textbf{g}) = 1-\tau(\textbf{g})-\nu(\textbf{g})
+$$
+
+:::
+::::
+
+
+
+
+
+
+<!-- TODO: EQK-TIP Matching Diagram -->
+<!-- CANVA.pptx p20-27 -->
+
+
+# Latest progress
+
+## Joint-station TIP forecasting for both GE and GM stations {auto-animate="true"}
+
+- Integrated <span class="fragment highlight-indianred" fragment-index=1>GEMSTIP and MagTIP</span> algorithms for analyzing <span class="fragment highlight-steelblue" fragment-index=2>earthquake-related geo-electromagnetic anomalies</span>.
+- Conducted a <span class="fragment highlight-forestgreen" fragment-index=3>comprehensive analysis of 12 years of geo-electromagnetic data</span>.
+
+
+::::{.columns}::::
+:::{.column width='50%'}
+![](./cwa-geamtip/report-2023/train_test_partition.png)
+
+:::
+:::{.column width='50%'}
+[2023]{.bltag}
+![](./cwa-geamtip/report-2023/FittingDegree_barplot_mono_color_with_nanmean.png){fig-align="left"}
+
+:::
+::::
+
+
+::: {.notes}
+EQK 遺漏率
+- 各場景、各預測區間通常差異很大
+- 遺漏率：GM較高，mix 最低
+
+TIP 預警率
+- GM較低
+- GE與mix預警率相仿、其中mix最高
+
+
+- 聯合地電與地磁測站(mix)的模型採取較為平衡的策略，以稍高的預警率進一步降低地震遺漏率。
+- 在本研究探討的個案中，mix場景在機率預報方面能提供更值得參考的資訊。
+:::
+
+
+
+## Joint-station TIP forecasting for both GE and GM stations {auto-animate="true" .unlisted}
+<!-- MolchanDiagram.png -->
+<!-- (For comparison) report-2023/MissingRateAlarmedRate_rainclouds_over_prp_trial.png -->
+<!-- report-2024/MissingRateAlarmedRate_rainclouds_over_prp_trial.png -->
+<!-- FittingDegree_barplot_mono_color_with=nanmean.png -->
+
+::::{.columns}::::
+:::{.column width='50%'}
+[2024]{.bltag}
+
+![](./cwa-geamtip/report-2024/FittingDegree_barplot_mono_color_with_nanmean.png){width="800px" fig-align="center"}
+:::
+:::{.column width='50%'}
+
+[2023]{.bltag}
+
+![](./cwa-geamtip/report-2023/FittingDegree_barplot_mono_color_with_nanmean.png){width="800px" fig-align="center"}
+
+:::
+::::
+
+> Use SEP increase the overall fitting degree of TIP forecast significantly!
+
+::: {.notes}
+根據先前GEMSTIP的研究*:
+基於地電資料的預報表現在訓練期約為1000日、預報期不超過180日時較佳
+根據先前MagTIP的研究†‡ :
+4年以上訓練期表現較佳、預報期半年以下時表現較佳†
+3年長訓練期表現最佳、9年長訓練期次佳‡
+
+- (*) 陳宏嘉 (2018)  
+- (†) 地磁場異常與地震的關連性系列研究 (MOTC-CWB, 2020)；測試期固定在2015-11-16至2016-02-15
+- (‡) 資訊理論應用於地電磁場相關聯之地震前兆研究 (MOTC-CWB-2022)
+:::
+
+
+# Probability forecast for individual cases
+
+## Targeting 2024-04-03 Hualien earthquakes {auto-animate=true}
+
+> (using 2023's model)
+
+::::{.columns}::::
+:::{.column width='60%'}
+- Training phase: 2020-01-01 to 2023-11-01
+- Forecasting phase: 2024-01-01 to 2024-05-05
+- Filter: ULF-A (0.001-0.003Hz)
+- Joint station: geo-electric and geo-magnetic
+
+![](event403_cluster1.png){width="650px"}
+:::
+
+:::{.column width='40%'}
+![](event403_datarange.png){fig-align="right"}
+
+![](event403_probmap.gif){width="500px" fig-align="center"}
+
+:::
+::::
+
+
+## Targeting 2024-04-03 Hualien earthquakes {.unlisted}
+
+> ☆ Target earthquakes (**main shocks**)
+> ◦ Non-target earthquakes nearby
+
+![](./cwa-geamtip/report-2024/events/Hualien_20240403/Eventid%5B2%5DFrom%5B2024-04-03%5DTo%5B2024-04-08%5D.png)
+
+
+## Targeting 2024-04-03 Hualien earthquakes {.unlisted}
+
+> ☆ Target earthquakes (**after shocks**) 
+> ◦ Non-target earthquakes nearby
+
+![](./cwa-geamtip/report-2024/events/Hualien_20240403/Eventid%5B6%5DFrom%5B2024-04-22%5DTo%5B2024-04-26%5D.png)
+
+## Targeting 2024-04-03 Hualien earthquakes {.unlisted}
+
+> ☆ Target earthquakes (**after shocks**) 
+> ◦ Non-target earthquakes nearby
+
+![](./cwa-geamtip/report-2024/events/Hualien_20240403/Eventid%5B3%5DFrom%5B2024-05-10%5DTo%5B2024-05-10%5D.png)
+
+
+
+
+
+## Targeting 2022-06-20 Hualien earthquakes
+
+> ☆ Target earthquakes (**main shocks**)
+> ◦ Non-target earthquakes nearby
+
+![](./cwa-geamtip/report-2024/events/Hualien_20220620/Eventid%5B1%5DFrom%5B2022-06-20%5DTo%5B2022-06-20%5D.png)
+
+
+::: {.notes}
+2022-06-20 光復地震
+- 芮氏規模6.0的地震，震央在花蓮縣光復鄉，震源深度僅6.8公里
+- 造成鳳林鎮箭瑛大橋出現伸張裂隙
+- 光豐公路(光復-豐濱)下邊坡滑動
+- 瑞港公路(瑞穗與豐濱鄉大港口)落石與山崩
+- 參考：https://fault.gsmma.gov.tw/Reports/More/3f0561ae5ffd436b9da65cf8b0a9e0ac
+:::
+
+
+## Targeting 2022-06-20 Hualien earthquakes {.unlisted}
+
+> ☆ Target earthquakes (others)
+> ◦ Non-target earthquakes nearby
+
+![](./cwa-geamtip/report-2024/events/Hualien_20220620/Eventid%5B102%5DFrom%5B2023-03-21%5DTo%5B2023-03-21%5D.png)
+
+
+
+
+## Targeting 2022-09-18 Taitung earthquakes
+
+> ☆ Target earthquakes
+> ◦ Non-target earthquakes nearby
+
+![](./cwa-geamtip/report-2024/events/Taitung_20220918/Eventid%5B37%5DFrom%5B2022-09-18%5DTo%5B2022-09-18%5D.png)
+
+::: {.notes}
+- 左邊的是 [2022-03-23 Hualien (長濱外海)](https://zh.wikipedia.org/zh-tw/2022%E5%B9%B4%E8%8A%B1%E8%93%AE%E5%9C%B0%E9%9C%87)；主震規模ML 6.7
+- 0918地震：震源深度僅7.8KM、極淺層、主震規模 ML 6.8
+- 震央位於台東縣池上鄉
+- 造成區域內橋梁嚴重程度不等的損傷，以及民宅毀損
+:::
+
+
+
+
+# Concluding Remark 
+
+
+ <!-- .fragment fragment-index=5 -->
+
+- <span class="fragment highlight-steelblue" fragment-index=1>Joint-Station TIP forecasting</span> method that integrates geo-electric and geo-magnetic data. 
+- Integrated <span class="fragment highlight-indianred" fragment-index=2>informational analysis</span> into <span class="fragment highlight-steelblue" fragment-index=2>TIP-based earthquake precursor detection</span>, developing experimental forecasting models.
+- <span class="fragment highlight-forestgreen" fragment-index=3>Successful case studies</span> demonstrated the effectiveness of these methods through probability forecasts for individual earthquake cases, indicating the practical potential in real-world earthquake forecasting.
+
+<span class="fragment highlight-bold" fragment-index=4>Moving forward</span> 
+
+- further refine the algorithm by combining TIP forecasts with latest machine learning techniques
+- integrating more extensive datasets and feature engineering 
+
+:::{.thankyou-gold .fragment}
+Thank you for listening
+:::
+
+
+::: {.notes}
+feature engineering: 特徵工程
+:::
+
+<!-- 
+
+## CHECKPOINT
+
+[Eventid[10]From[2021-07-07]To[2021-07-07].png] and 
+[Eventid[23]From[2021-07-13]To[2021-07-13].png] and 
+[Eventid[26]From[2021-05-25]To[2021-05-25].png] and 
+[Eventid[29]From[2021-04-18]To[2021-04-18].png] and 
+[Eventid[74]From[2021-06-20]To[2021-06-20].png]
+Covers 
+- [2021-04-18 Hualien (壽豐) earthquake](https://zh.wikipedia.org/zh-tw/2021%E5%B9%B4%E8%8A%B1%E8%93%AE%E5%9C%B0%E9%9C%87), 
+- [2021-07 花縣政府南偏西方 5.1 公里](https://www.cna.com.tw/news/firstnews/202107140043.aspx), 
+- [2022-03-23 Hualien (長濱外海)](https://zh.wikipedia.org/zh-tw/2022%E5%B9%B4%E8%8A%B1%E8%93%AE%E5%9C%B0%E9%9C%87) and 
+- [20220620 光復](https://fault.gsmma.gov.tw/Reports/More/3f0561ae5ffd436b9da65cf8b0a9e0ac)
+
+Eventid[28]From[2023-05-04]To[2023-05-04].png
+- Pre-0403 Earthquake
+
+(Not DVC yet) [Eventid[30]From[2021-08-04]To[2021-08-04].png] and [Eventid[51]From[2021-03-04]To[2021-03-04].png] and Eventid[68]From[2021-11-17]To[2021-11-17].png and Eventid[95]From[2021-10-04]To[2021-10-04].png
+- 2021-08-05 宜蘭外海
+- https://big5.huaxia.com/c/2021/08/05/687596.shtml
+- https://www.cwa.gov.tw/Data/service/notice/download/Publish_20240926150157.pdf
+- 花蓮外海很漂亮 [Eventid[82]From[2021-09-06]To[2021-09-06].png]
+
+Eventid[46]From[2021-09-25]To[2021-09-25].png
+- 暫放 Hualien_20220323 資料夾
+- 2021-09
+- https://www.hakkatv.org.tw/news-detail/1632629523216639
+- https://scweb.cwa.gov.tw/zh-tw/earthquake/details/2021092606211957096
+- https://www.cna.com.tw/news/ahel/202110240089.aspx
+
+Eventid[59]From[2022-11-13]To[2022-11-15].png
+- 要查一下是不是 20220918台東地震的餘震 -->
+
+
+# Publications {.unlisted}
+
+## Stochastic Dynamics and Informational Analysis of Earthquake Rupture Processes {.unlisted}
+
+This research, central to [my doctoral thesis](https://etd.lib.nycu.edu.tw/cgi-bin/gs32/ncugsweb.cgi/ccd=XFHnvt/record?r1=1&h1=2), resulted in [one published paper](https://aip.scitation.org/doi/full/10.1063/1.5092552), [one under review](https://www.researchsquare.com/article/rs-3301435/v1), and another nearly ready for submission.
+
+
+## {.unlisted}
+
+Classification and Regression Tree (CART)-based estimation of soil water content based on meteorological inputs and explorations of hydrodynamics behind
+
+<iframe width="1600" height="750" src="https://www.sciencedirect.com/science/article/pii/S037837742400204X" title="AGWAT-paper"></iframe>
+
+# Recent Conference Presentations {.unlisted}
+
+## 2023 Conference for Open Source Coders, Users & Promoters (COSCUP 2023) {.scrollable .unlisted}
+
+(Oral) Julia for Data-Driven Soil Water Content Estimation in Agriculture
+
+- Audience: Predominantly professionals in software and data engineering
+- Description: Presented innovative methodologies utilizing Julia for estimating soil water content, demonstrating data preparation, model training, and prediction accuracy improvements. Highlighted the application of machine learning techniques, including the Classification and Regression Tree (CART) algorithm, and the integration of atmospheric data to enhance agricultural practices and water resource management.
+- For detailed information, please refer to [the page of this talk](https://pretalx.coscup.org/coscup-2023/talk/WMYFZE/) and also the [Slides](https://okatsn.github.io/COSCUP_2023_Slides/about_twaiswcf/){preview-link="true"}.
+
+<iframe width="1600" height="600" src="https://okatsn.github.io/COSCUP_2023_Slides/about_twaiswcf/" title=""></iframe>
+
+
+## 2023 Conference for Open Source Coders, Users & Promoters (COSCUP 2023) {.scrollable .unlisted}
+
+(Oral) SmallDatasetMaker.jl: A Julia package for making and maintaining small datasets
+
+- Role: Developer
+- Description: Created tools to facilitate the creation, update, and management of datasets as Julia packages. Focused on data compression, version control, and ease of integration into Julia projects.
+- For detailed information, please refer to [the page of this talk](https://pretalx.coscup.org/coscup-2023/talk/ED3VPX/) and also the [Slides](https://okatsn.github.io/COSCUP_2023_Slides/introduce_smalldatasetmaker/){preview-link="true"}.
+
+<iframe width="1600" height="600" src="https://okatsn.github.io/COSCUP_2023_Slides/introduce_smalldatasetmaker/" title=""></iframe>
+
+
+## Asia-Pacific Signal and Information Processing Association Annual Summit and Conference (2023 APSIPA ASC) {.scrollable .unlisted}
+
+(Oral) Random forest of Classification and Regression Tree (CART) in the estimation of SWC based on meteorological inputs and hydrodynamics behind
+
+- For more detailed information, please refer to the [Slides](https://okatsn.github.io/APSIPA_2023_Slide/APSIPA_2023_presentation/){preview-link="true"}.
+
+<iframe width="1600" height="600" src="https://okatsn.github.io/APSIPA_2023_Slide/APSIPA_2023_presentation/" title=""></iframe>
+
+
+## American Geophysical Union Fall Meeting (2023 AGU) {.scrollable .unlisted}
+
+(Poster) Fisher-Shannon Analysis on Experimental Seismic Slip Rate History and Its Implications to Earthquake Rupture Dynamics
+
+
+::: {.scroll-container style="overflow-y: scroll; height: 750px;"}
+![](poster-portrait.png){width="1600" fig-align="center"}
+:::
+
+
+<!-- CHECKPOINT: Grid layout -->

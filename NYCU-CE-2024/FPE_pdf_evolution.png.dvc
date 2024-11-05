@@ -1,0 +1,12 @@
+md5: 5dca362839769691e0f4847275a0836b
+frozen: true
+deps:
+- path: stochastic-rupture/FPE_pdf_evolution.png
+  repo:
+    url: https://github.com/okatsn/ok-assets-registry.git
+    rev_lock: df9ebb3fa631722cbba155759c52c03afe7de2a7
+outs:
+- md5: e25663c93b4be697f97e5d5284718819
+  size: 281759
+  hash: md5
+  path: FPE_pdf_evolution.png

@@ -1,0 +1,12 @@
+md5: 8f7e4c4031d9013bdc74607d165c0a14
+frozen: true
+deps:
+- path: stochastic-rupture/FinalDefense_p10.png
+  repo:
+    url: https://github.com/okatsn/ok-assets-registry.git
+    rev_lock: df9ebb3fa631722cbba155759c52c03afe7de2a7
+outs:
+- md5: 0f204673cb11dc4c2334f12d190ed007
+  size: 234041
+  hash: md5
+  path: FinalDefense_p10.png

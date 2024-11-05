@@ -1,0 +1,13 @@
+outs:
+- md5: e0ad02b136e87adb4d7901f4176efc26.dir
+  size: 11249718
+  nfiles: 13
+  hash: md5
+  path: stochastic-rupture
+md5: 7551318416dbecef5f2f398bbcef4b7a
+frozen: true
+deps:
+- path: stochastic-rupture
+  repo:
+    url: https://github.com/okatsn/ok-assets-registry.git
+    rev_lock: 70d868fd949d319acfe0a352cd3ea634628f13e0

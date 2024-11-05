@@ -1,0 +1,12 @@
+md5: 7c5d234390dd56e8f23310535422e10e
+frozen: true
+deps:
+- path: agu-23/poster-portrait.png
+  repo:
+    url: https://github.com/okatsn/ok-assets-registry.git
+    rev_lock: 7c4811b38b84f7ee3c9d381a3ef80c07e2f459e3
+outs:
+- md5: ffac47c27f8ee236273d30201300c97d
+  size: 1670179
+  hash: md5
+  path: poster-portrait.png

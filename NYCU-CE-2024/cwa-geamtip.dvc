@@ -1,0 +1,13 @@
+outs:
+- md5: cdb4bbe719e93429a32d2fd114dee0bb.dir
+  size: 33303261
+  nfiles: 96
+  hash: md5
+  path: cwa-geamtip
+md5: 3449731e74d439654da3ba8619b23b3e
+frozen: true
+deps:
+- path: cwa-geamtip
+  repo:
+    url: https://github.com/okatsn/ok-assets-registry.git
+    rev_lock: cc4a49700209e3ebc9fd9af7c5ab2dd8559262ef
