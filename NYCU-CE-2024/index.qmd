@@ -521,7 +521,9 @@ $$
 
 :::
 :::{.column width='50%'}
+
 [2023]{.bltag}
+
 ![](./cwa-geamtip/report-2023/FittingDegree_barplot_mono_color_with_nanmean.png){fig-align="left"}
 
 :::
