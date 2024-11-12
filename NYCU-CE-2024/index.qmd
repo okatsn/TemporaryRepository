@@ -12,7 +12,7 @@ author: # https://quarto.org/docs/authoring/front-matter.html
     - name: "Tsung-Hsi Wu (吳宗羲)"
       affiliation: "National Central University"
 # institute: "National Central University" # This attaches to the first author only
-date: 2024-11-06
+date: 2024-11-20
 jupyter: julia-1.10
 # bibliography: main.bib
 format: 
@@ -75,7 +75,7 @@ Taoyuan, Taiwan
 
 ## Main Research Topics {.scrollable .unlisted}
 
-My research in Earth Sciences focuses on innovative methodologies and analytical techniques to enhance the understanding of <span class="fragment highlight-forestgreen" fragment-index=1>soil water content estimation</span>, <span class="fragment highlight-indianred" fragment-index=2>stochastic earthquake dynamics</span>, and <span class="fragment highlight-steelblue" fragment-index=3>earthquake precursor detection</span>. Below are the main areas of my research:
+My research in Earth Sciences focuses on innovative methodologies and analytical techniques to enhance the understanding of <span class="fragment highlight-steelblue" fragment-index=1>soil water content estimation</span>, <span class="fragment highlight-forestgreen" fragment-index=2>stochastic earthquake dynamics</span>, and <span class="fragment highlight-indianred" fragment-index=3>earthquake precursor detection</span>. Below are the main areas of my research:
 
 ::: {.image-container}
 ![](Fig_research_roadmap.png){width="1920px" fig-align="center"}
@@ -610,7 +610,7 @@ TIP 預警率
 ## Targeting 2024-04-03 Hualien earthquakes {.unlisted}
 
 > ☆ Target earthquakes (**main shocks**)
-> ◦ Non-target earthquakes nearby
+> ◦ Non-target earthquakes within 30 km
 
 ![](./cwa-geamtip/report-2024/events/Hualien_20240403/Eventid%5B2%5DFrom%5B2024-04-03%5DTo%5B2024-04-08%5D.png)
 
@@ -618,14 +618,14 @@ TIP 預警率
 ## Targeting 2024-04-03 Hualien earthquakes {.unlisted}
 
 > ☆ Target earthquakes (**after shocks**) 
-> ◦ Non-target earthquakes nearby
+> ◦ Non-target earthquakes within 30 km
 
 ![](./cwa-geamtip/report-2024/events/Hualien_20240403/Eventid%5B6%5DFrom%5B2024-04-22%5DTo%5B2024-04-26%5D.png)
 
 ## Targeting 2024-04-03 Hualien earthquakes {.unlisted}
 
 > ☆ Target earthquakes (**after shocks**) 
-> ◦ Non-target earthquakes nearby
+> ◦ Non-target earthquakes within 30 km
 
 ![](./cwa-geamtip/report-2024/events/Hualien_20240403/Eventid%5B3%5DFrom%5B2024-05-10%5DTo%5B2024-05-10%5D.png)
 
@@ -636,7 +636,7 @@ TIP 預警率
 ## Targeting 2022-06-20 Hualien earthquakes
 
 > ☆ Target earthquakes (**main shocks**)
-> ◦ Non-target earthquakes nearby
+> ◦ Non-target earthquakes within 30 km
 
 ![](./cwa-geamtip/report-2024/events/Hualien_20220620/Eventid%5B1%5DFrom%5B2022-06-20%5DTo%5B2022-06-20%5D.png)
 
@@ -654,7 +654,7 @@ TIP 預警率
 ## Targeting 2022-06-20 Hualien earthquakes {.unlisted}
 
 > ☆ Target earthquakes (others)
-> ◦ Non-target earthquakes nearby
+> ◦ Non-target earthquakes within 30 km
 
 ![](./cwa-geamtip/report-2024/events/Hualien_20220620/Eventid%5B102%5DFrom%5B2023-03-21%5DTo%5B2023-03-21%5D.png)
 
@@ -664,7 +664,7 @@ TIP 預警率
 ## Targeting 2022-09-18 Taitung earthquakes
 
 > ☆ Target earthquakes
-> ◦ Non-target earthquakes nearby
+> ◦ Non-target earthquakes within 30 km
 
 ![](./cwa-geamtip/report-2024/events/Taitung_20220918/Eventid%5B37%5DFrom%5B2022-09-18%5DTo%5B2022-09-18%5D.png)
 
